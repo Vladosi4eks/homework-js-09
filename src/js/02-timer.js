@@ -10,6 +10,7 @@ const refs = {
 }
 
 refs.startBtn.addEventListener('click', anotherDate);
+
 function convertMs(ms) {
     // Number of milliseconds per unit of time
     const second = 1000;
@@ -37,11 +38,44 @@ const options = {
     minuteIncrement: 1,
     onClose(selectedDates) {
       countdownDate = new Date(selectedDates).getTime();
+      newDateUpdate();
     },
+    // onValueUpdate(selectedDates) {
+    // },
   };
+//   var last;
+//   let values = [];
   var countdown;
+//   var info  = [];
+
+function newDateUpdate() {
+
+  if(countdownDate > options.defaultDate){
+    refs.startBtn.removeAttribute('disabled');
+  }
+  else{
+    window.alert("Please choose a date in the future");
+    
+    refs.startBtn.setAttribute('disabled', true);
+  }
+}
+
+
+// if(document.querySelector(".disabled")){
+//   console.log("true");
+//   color = setInterval(changeBackgroundColor, 1000, 1000);
+//   refs.startBtn.setAttribute('disabled', true);
+//   refs.stopBtn.removeAttribute('disabled');
+// }
+// else{
+//   console.log("false");
+//   clearInterval(color);
+//   refs.startBtn.removeAttribute('disabled');
+//   refs.stopBtn.setAttribute('disabled', true);
+// }
+
 function anotherDate() {
-    countdown = setInterval(toDie, 1000);
+  countdown = setInterval(toDie, 1000);
 }
 function toDie() {
     const distance = countdownDate - options.defaultDate;
@@ -53,6 +87,7 @@ function toDie() {
             values[i] =  `0${values[i]}`;
         }
     }
+    const last = distance;
     refs.items.forEach(function (item, index) {
       item.textContent = values[index];
     });
