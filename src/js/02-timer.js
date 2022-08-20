@@ -54,8 +54,9 @@ function toDie() {
     const values = [info.days, info.hours, info.minutes, info.seconds];
     for(let i = 0; i < values.length; i++){
         if(values[i] < 10){
-            values[i] = "0" + values[i];
-            values[i] = Number(values[i]);
+          const zero = 00;
+            values[i] =  "0" + values[i];
+            // values[i] = Number(values[i]);
         }
     }
     const last = distance;
