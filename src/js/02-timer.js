@@ -36,14 +36,10 @@ const options = {
     defaultDate: new Date(),
     minuteIncrement: 1,
     onClose(selectedDates) {
-      console.log(selectedDates[0]);
       countdownDate = new Date(selectedDates).getTime();
     },
   };
-//   var last;
-//   let values = [];
   var countdown;
-//   var info  = [];
 function anotherDate() {
     countdown = setInterval(toDie, 1000);
 }
@@ -54,10 +50,9 @@ function toDie() {
     const values = [info.days, info.hours, info.minutes, info.seconds];
     for(let i = 0; i < values.length; i++){
         if(values[i] < 10){
-            values[i] =  "0" + values[i];
+            values[i] =  `0${values[i]}`;
         }
     }
-    const last = distance;
     refs.items.forEach(function (item, index) {
       item.textContent = values[index];
     });
