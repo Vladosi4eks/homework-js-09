@@ -1,32 +1,32 @@
-const refs = {
-    startBtn: document.querySelector("[data-start]"),
-    stopBtn: document.querySelector("[data-stop]"),
-};
-refs.startBtn.addEventListener("click", toggleModal);
-refs.stopBtn.addEventListener("click", toggleModal);
+const startBtn = document.querySelector("[data-start]");
+const stopBtn = document.querySelector("[data-stop]");
 
-refs.stopBtn.setAttribute('disabled', true);
+startBtn.addEventListener("click", onStartChangeColor);
+stopBtn.addEventListener("click", onStartChangeColor);
 
-var color;
-function toggleModal() {
-    refs.startBtn.classList.toggle("disabled");
-    if(document.querySelector(".disabled")){
-        console.log("true");
-        color = setInterval(changeBackgroundColor, 1000, 1000);
-        refs.startBtn.setAttribute('disabled', true);
-        refs.stopBtn.removeAttribute('disabled');
+stopBtn.disabled = true;
+
+function changeButtonAttribute() {
+    if(startBtn.disabled){
+        stopBtn.disabled = true;
+        startBtn.disabled = false;
     }
     else{
-        console.log("false");
-        clearInterval(color);
-        refs.startBtn.removeAttribute('disabled');
-        refs.stopBtn.setAttribute('disabled', true);
+        stopBtn.disabled = false;
+        startBtn.disabled = true;
     }
 }
 
-function changeBackgroundColor() {
-    
-    return document.body.style.backgroundColor = getRandomHexColor();
+var colorTimer;
+
+function onStartChangeColor() {
+    changeButtonAttribute(); 
+    if(startBtn.disabled){
+        colorTimer = setInterval(() => {document.body.style.backgroundColor = getRandomHexColor();}, 1000);
+    }
+    else{
+        clearInterval(colorTimer);
+    }
 }
 
 function getRandomHexColor() {

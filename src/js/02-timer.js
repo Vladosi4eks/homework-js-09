@@ -40,13 +40,8 @@ const options = {
       countdownDate = new Date(selectedDates).getTime();
       newDateUpdate();
     },
-    // onValueUpdate(selectedDates) {
-    // },
   };
-//   var last;
-//   let values = [];
-  var countdown;
-//   var info  = [];
+var countdown;
 
 function newDateUpdate() {
 
@@ -59,21 +54,6 @@ function newDateUpdate() {
     refs.startBtn.setAttribute('disabled', true);
   }
 }
-
-
-// if(document.querySelector(".disabled")){
-//   console.log("true");
-//   color = setInterval(changeBackgroundColor, 1000, 1000);
-//   refs.startBtn.setAttribute('disabled', true);
-//   refs.stopBtn.removeAttribute('disabled');
-// }
-// else{
-//   console.log("false");
-//   clearInterval(color);
-//   refs.startBtn.removeAttribute('disabled');
-//   refs.stopBtn.setAttribute('disabled', true);
-// }
-
 function anotherDate() {
   countdown = setInterval(toDie, 1000);
 }
@@ -91,7 +71,6 @@ function toDie() {
     refs.items.forEach(function (item, index) {
       item.textContent = values[index];
     });
-    console.log(values);
     if(countdownDate <= options.defaultDate){
         clearInterval(countdown);
     }
